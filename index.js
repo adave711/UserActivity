@@ -9,11 +9,7 @@ var uuid = require("./user_session_gen");
 
 var app = express();
 
-app.use(
-  cors({
-    origin: ["http://gis.streetlogix.com", (Credential = true)],
-  })
-);
+//app.use(cors());
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://gis.streetlogix.com");
