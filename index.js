@@ -79,6 +79,6 @@ app.get("/", function (req, res) {
   res.send("api is running");
 });
 
-app.listen( 5000, () => {
+app.listen( 3000, () => {
   console.log("Application running on Port 5000 number");
 });
