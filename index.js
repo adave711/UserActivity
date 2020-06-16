@@ -31,12 +31,10 @@ app.post("/api/users/add_activities", function (req, res) {
     (result) => {
       console.log(result.rowCount);
       if (result.rowCount > 0) {
-        res
-          .status(200)
-          .json({
-            data: "User records added successfully",
-            sessionid: sessionid,
-          });
+        res.status(200).json({
+          data: "User records added successfully",
+          sessionid: sessionid,
+        });
       } else {
         res.status(500).send("something went wrong");
       }
@@ -45,6 +43,33 @@ app.post("/api/users/add_activities", function (req, res) {
   );
 });
 
+// app.post("/api/users/update_activities", function (req, res) {
+//   var sessionid = uuid.genUuid().substring(0, 8);
+
+//   dao.connect();
+//   dao.query(
+//     "update user_activities set ",
+//     [
+//       req.body.jwt,
+//       sessionid,
+//       req.body.sessionstart,
+//       req.body.online,
+//       req.body.userId,
+//     ],
+//     (result) => {
+//       console.log(result.rowCount);
+//       if (result.rowCount > 0) {
+//         res.status(200).json({
+//           data: "User records added successfully",
+//           sessionid: sessionid,
+//         });
+//       } else {
+//         res.status(500).send("something went wrong");
+//       }
+//       dao.disconnect();
+//     }
+//   );
+// });
 app.listen(3000, () => {
   console.log("Application running on 3000 Port number");
 });
