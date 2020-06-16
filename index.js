@@ -11,7 +11,7 @@ var app = express();
 
 //app.use(cors());
 
-//app.use(cors({ origin: "*" }));
+app.use(cors({ origin: "*" }));
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
