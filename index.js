@@ -55,7 +55,7 @@ app.post("/api/users/add_activities", function (req, res, next) {
     [
       req.body.jwt,
       sessionid,
-      req.body.sessionstart,
+      to_timestamp(req.body.sessionstart / 1000.0),
       req.body.online,
       req.body.userId,
     ],
