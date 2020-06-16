@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.post("/api/users/add_activities", function (req, res) {
+  res.header("Access-Control-Allow-Origin", "*");
   var sessionid = uuid.genUuid().substring(0, 8);
 
   dao.connect();
