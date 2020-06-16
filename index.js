@@ -106,6 +106,6 @@ app.get("/", function (req, res) {
   res.send("api is running");
 });
 
-app.listen( 3000, () => {
-  console.log("Application running on Port 5000 number");
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Application running on Port 5000 number" + process.env.PORT);
 });
