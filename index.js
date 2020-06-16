@@ -70,6 +70,6 @@ app.post("/api/users/add_activities", function (req, res) {
 //     }
 //   );
 // });
-app.listen(3000, () => {
-  console.log("Application running on 3000 Port number");
+app.listen(process.env.APP_PORT, () => {
+  console.log("Application running on 3000 Port number" + process.env.APP_PORT);
 });
