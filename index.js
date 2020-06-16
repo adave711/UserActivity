@@ -86,6 +86,11 @@ app.post("/api/users/add_activities", function (req, res, next) {
 //     }
 //   );
 // });
+
+app.get("/", function (req, res, next) {
+  res.send("api is running");
+});
+
 app.listen(process.env.PORT || 5000, () => {
   console.log("Application running on Port number" + process.env.PORT);
 });
