@@ -1,10 +1,10 @@
 ###
-POST http://localhost:3000/api/users/add_activities HTTP/1.1
+POST https://user-activity-streetlogix.herokuapp.com/api/users/add_activities HTTP/1.1
 content-type: application/json
 
 {
     "jwt": "edienicndneincdicn",
     "sessionstart":"2019-06-12 17:11:51.632+00",
     "online":"true",
-    "userId":"875"
+    "userId":"140"
 }

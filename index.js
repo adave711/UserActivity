@@ -8,12 +8,13 @@ module.exports = dao;
 var uuid = require("./user_session_gen");
 
 var app = express();
+
+app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
-
-app.use(cors());
 
 app.post("/api/users/add_activities", function (req, res) {
   var sessionid = uuid.genUuid().substring(0, 8);
@@ -32,7 +33,7 @@ app.post("/api/users/add_activities", function (req, res) {
       console.log(result.rowCount);
       if (result.rowCount > 0) {
         res.status(200).json({
-          data: "User records added successfully",
+          message: "User records added successfully",
           sessionid: sessionid,
         });
       } else {
