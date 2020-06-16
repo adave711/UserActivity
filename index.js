@@ -9,21 +9,27 @@ var uuid = require("./user_session_gen");
 
 var app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: ["http://gis.streetlogix.com"],
+  })
+);
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "http://gis.streetlogix.com");
+  res.header("Access-Control-Allow-Headers", true);
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, PATCH, DELETE"
+  );
+  next();
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json());
-
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://gis.streetlogix.com"); // update to match the domain you will make the request from
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
 
 app.post("/api/users/add_activities", function (req, res, next) {
   var sessionid = uuid.genUuid().substring(0, 8);
