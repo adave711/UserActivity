@@ -11,9 +11,7 @@ var app = express();
 
 //app.use(cors());
 
-app.use(cors({ origin: "*" }));
-
-app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(cors({ origin: "*" }));
 
 app.use(function (req, res, next) {
   // Website you wish to allow to connect
@@ -42,6 +40,9 @@ app.use(function (req, res, next) {
   // Pass to next layer of middleware
   next();
 });
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // parse application/json
 app.use(bodyParser.json());
 
@@ -71,7 +72,6 @@ app.post("/api/users/add_activities", function (req, res, next) {
       dao.disconnect();
     }
   );
-  next();
 });
 
 // app.post("/api/users/update_activities", function (req, res) {
@@ -102,7 +102,7 @@ app.post("/api/users/add_activities", function (req, res, next) {
 //   );
 // });
 
-app.get("/", function (req, res) {
+app.get("/", function (req, res, next) {
   res.send("api is running");
 });
 
