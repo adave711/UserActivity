@@ -74,33 +74,32 @@ app.post("/api/users/add_activities", function (req, res, next) {
   );
 });
 
-// app.post("/api/users/update_activities", function (req, res) {
-//   var sessionid = uuid.genUuid().substring(0, 8);
-
-//   dao.connect();
-//   dao.query(
-//     "update user_activities set ",
-//     [
-//       req.body.jwt,
-//       sessionid,
-//       req.body.sessionstart,
-//       req.body.online,
-//       req.body.userId,
-//     ],
-//     (result) => {
-//       console.log(result.rowCount);
-//       if (result.rowCount > 0) {
-//         res.status(200).json({
-//           data: "User records added successfully",
-//           sessionid: sessionid,
-//         });
-//       } else {
-//         res.status(500).send("something went wrong");
-//       }
-//       dao.disconnect();
-//     }
-//   );
-// });
+app.put("/api/users/update_session", function (req, res) {
+  dao.connect();
+  dao.query(
+    `update user_activities set sessionend=$1 , online=$2, 
+    session_duration=(SELECT EXTRACT(EPOCH FROM ( $3 - sessionstart)/60)
+     FROM user_activities where sessionid=$4) where sessionid=$5`,
+    [
+      req.body.sessionend,
+      false,
+      req.body.sessionend,
+      req.body.sessionid,
+      req.body.sessionid,
+    ],
+    (result) => {
+      console.log(result.rowCount);
+      if (result.rowCount > 0) {
+        res.status(200).json({
+          data: "User session updated successfully",
+        });
+      } else {
+        res.status(500).send("something went wrong");
+      }
+      dao.disconnect();
+    }
+  );
+});
 
 app.get("/", function (req, res, next) {
   res.send("api is running");

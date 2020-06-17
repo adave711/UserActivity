@@ -8,3 +8,13 @@ content-type: application/json
     "online":"true",
     "userId":"141"
 }
+
+###
+PUT  https://user-activity-streetlogix.herokuapp.com/api/users/update_session HTTP/1.1
+content-type: application/json
+
+{
+    "sessionend":"2020-06-17 15:11:49.44+00",
+    "sessionid":"5a752239"
+}
+
